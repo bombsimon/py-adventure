@@ -40,7 +40,7 @@ To move between rooms you you can type ```forward``` or ```backward```.
 | | | |
 | inventory | inv | List your current inventory |
 | take | | Take ```[object]``` |
-| drop 7 sl | Drop ```[object]``` |
+| drop | sl | Drop ```[object]``` |
 | use | a | Use ```[object]``` | 
 
 ## Customizing

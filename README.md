@@ -28,7 +28,7 @@ To move between rooms you you can type ```forward``` or ```backward```.
 | forward | fr | Go forward to the next room |
 | back | ba | Go backwards to previous room | 
 | look | se | Look around in the room |
-| clue | l | List hints inside the room |
+| hint | l | List hints inside the room |
 | quit | q | Quit the game |
 | save | sp | Save your progress |
 | | | |

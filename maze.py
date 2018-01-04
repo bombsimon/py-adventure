@@ -81,7 +81,7 @@ class Game:
 
         print()
         print("---")
-        print("You can carry items along your jorney")
+        print("You can carry items along your journey")
         print("{: <12} | {: <4} - {!s}".format("inventarier", "inv", "List your current inventory"))
         print("{: <12} | {: <4} - {!s}".format("ta", "", "Take [object]"))
         print("{: <12} | {: <4} - {!s}".format("släpp", "sl", "Drop [object]"))

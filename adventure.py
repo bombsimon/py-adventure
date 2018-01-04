@@ -124,7 +124,7 @@ def run_game(params):
                        'ta', 'take']
 
         if action not in inv_actions and action not in obj_actions:
-            print("I don't know what you men by '{!s}'... Type 'help' to see what you cna doo.".format(action))
+            print("I don't know what you men by '{!s}'... Type 'help' to see what you can do.".format(action))
             continue
 
         if action in inv_actions and obj not in g.inventory:

@@ -1,0 +1,440 @@
+{
+  "game_name": "The Maze",
+  "inventory": {},
+  "highest_room_id": 1,
+  "current_room_id" : 1,
+  "start_text": "How did I end up here... And where is here? \n\nI don't even remember last night. Something terribly must have happened. I must get out! \n\nWhat is this? A note? It reads: \n'Welcome to the maze! You're now trapped in what we call room 1 which is located at the start of the maze. Your objective is to get to the last room. \n\nTo be able to do that you must find the way forward. By moving, breaking or opening objects in your way you'll find new information on how to make your progress through the maze. \nIf you find things that might be to later usage you're able to do so by picking them up. \n\nTo see more information about this maze, just type 'help'. Good luck!' \n\n---",
+  "end_text": "You did it! You got out! You completed the game! And if you did this without cheating... You're pretty damn good! :)",
+  "rooms": {
+    "1": {
+      "number": 1, 
+      "info": "The room is well lit from the window on the left wall. Everything is clearly visible",
+      "objects": {
+        "photo frame": {
+          "name": "Photo frame", 
+          "desc": "A photo frame with a picture of a dog", 
+          "hint": "I notice something strange with that picture, it looks like it has recently been opened", 
+          "breakable": true,
+          "takeable": false, 
+          "openable": true, 
+          "moveable": false, 
+          "break_event": "The photo frame broke, a key hidden behind the picture fell out", 
+          "open_event": "Behind the picture someone has hidden a key",  
+          "inside": {
+            "type": "item",
+            "name": "Wardrobe key", 
+            "usable_in": 1, 
+            "desc": "A key that has a lion engraved... It must be to the wardrobe seen around here somewhere", 
+            "usable_at": "wardrobe"
+          }, 
+          "final_state": {
+            "name": "Photo frame", 
+            "desc": "A photo frame without a picture, someone must have taken something from behind the picture"
+          }
+        }, 
+        "mirror": {
+          "name": "Mirror", 
+          "desc": "A large mirror leaned towards the wall", 
+          "hint": "That mirror just seems to be leaned against the wall, would be a shape if someone happened to tilt it...", 
+          "breakable": true,
+          "takeable": false, 
+          "openable": false, 
+          "moveable": false, 
+          "break_event": "The mirror broke, there are shattered glass all over the floor", 
+          "inside": {
+            "type": "item",
+            "name": "Shattered glass", 
+            "usable_in": 2, 
+            "desc": "A piece of glass that came from the broken mirror", 
+            "usable_at": "cloth"
+          }, 
+          "final_state": {
+            "name": "Broken mirror", 
+            "desc": "A mirror that used to lean against the wall... Now broken"
+          } 
+        },
+        "wardrobe": {
+          "name": "Wardrobe",
+          "desc": "A locked wardrobe with a key hole",
+          "hint": "The key hole at the wardrobe looks like it's recently been used. Maybe the key is somewhere around here?",
+          "breakable": false,
+          "takeable": false,
+          "openable": false,
+          "moveable": false,
+          "use_event": "continue",
+          "continue_event": "Who would have thought... Theres a path to the next room here!",
+          "final_state": {
+            "name": "Wardrobe",
+            "desc": "The wardrobe you unlocked with the key found in the photo frame"
+          }
+        }
+      }
+    },
+    "2": {
+      "number": 2,
+      "info": "You're standing in a long corridor. The flame from a candlestick at the end of the room is casting long shadows on the floor...",
+      "objects": {
+        "cat": {
+          "name": "Cat",
+          "desc": "A cute cat walking down the hall",
+          "hint": "The cat is just a friend... You won't get any help from it!",
+          "breakable": false,
+          "takeable": false,
+          "openable": false,
+          "moveable": false
+        },
+        "cloth": {
+          "name": "Cloth",
+          "desc": "A white cloth hanging between two pillars. It's been nailed stuck",
+          "hint": "It must be possible to cut this cloth open with something sharp",
+          "breakable": false,
+          "takeable": false,
+          "openable": false,
+          "moveable": false,
+          "break_event": "The cloth easily got tared to pieces by using the sharp item! There's something on the floor...",
+          "use_event": "break",
+          "inside": {
+            "type": "item",
+            "name": "Zippo",
+            "usable_in": 2,
+            "desc": "A silver zip lighter, fully functional",
+            "usable_at": "match cord"
+          },
+          "final_state": {
+            "name": "Pile of rags",
+            "desc": "Just some textile pieces from the old cloth"
+          }
+        },
+        "drawer": {
+          "name": "Drawer",
+          "desc": "A little drawer without any doors",
+          "hint": "There's no dust on the floor under the drawer... Has someone moved it?",
+          "breakable": false,
+          "takeable": false,
+          "openable": false,
+          "moveable": true,
+          "move_event": "The drawer easily got pushed, a match cord is sticking out of the wall",
+          "inside": {
+            "type": "object",
+            "name": "Match cord",
+            "desc": "A short match cord with unknown termination point on the other side of the wall",
+            "breakable": false,
+            "takeable": false,
+            "openable": false,
+            "moveable": false,
+            "use_event": "continue",
+            "continue_event": "POW! A small explosion opened up a hole in the wall!"
+          },
+          "final_state": {
+            "name": "Drawer",
+            "desc": "The little drawer that was hiding the match cord"
+          }
+        }
+      }
+    },
+    "3": {
+      "number": 3,
+      "info": "The ceiling is low and the room is small. Everything is very narrow",
+      "objects": {
+        "remote": {
+          "name": "Remote",
+          "desc": "A remote control with a few buttons",
+          "hint": "There's no TV here but I guess it's worth testing the remote",
+          "breakable": false,
+          "takeable": true,
+          "openable": false,
+          "moveable": false,
+          "usable_at": "wall slot",
+          "usable_in": 3
+        },
+        "wall slot": {
+          "name": "Wall slot",
+          "hidden": true,
+          "breakable": false,
+          "takeable": false,
+          "openable": false,
+          "moveable": false,
+          "use_event": "open",
+          "open_event": "What's this! A slot on the wall opened up!",
+          "inside": {
+            "type": "item",
+            "name": "Door key",
+            "usable_in": 3,
+            "desc": "A small key with a large cross",
+            "usable_at": "door"
+          }
+        },
+        "door": {
+          "name": "Door",
+          "desc": "A dor filling the wall from floor to roof with a large cross",
+          "hint": "There must be a key to the door somwhere",
+          "breakable": false,
+          "takeable": false,
+          "openable": false,
+          "moveable": false,
+          "use_event": "continue",
+          "continue_event": "You unlocked the door with the key!",
+          "final_state": {
+            "name": "Door",
+            "desc": "A door with a large cross that's been unlocked"
+          }
+        }
+      }
+    },
+    "4": {
+      "number": 4,
+      "info": "The room has blue wallpapers with green dots. It almost looks like a large map but no countrys are placed or named on it.",
+      "objects": {
+        "chest": {
+          "name": "Chest",
+          "desc": "A chest with a knight helmet engraved around the locket",
+          "hint": "I haven't seen anything related to the chest engraving. I guess the key can be in a room I still not been to",
+          "breakable": false,
+          "takeable": false,
+          "openable": false,
+          "moveable": false,
+          "use_event": "open",
+          "open_event": "The chest opened up!",
+          "inside": {
+            "type": "item",
+            "name": "Stone",
+            "desc": "A silver stone with the shape of a knight's shield",
+            "usable_at": "knights shield",
+            "usable_in": 7
+          },
+          "final_state": {
+            "name": "Chest",
+            "desc": "An unlocked chest with the top opened"
+          }
+        },
+        "globe": {
+          "name": "Globe",
+          "desc": "A globe with unknown age. It still says 'Sovet Union'...",
+          "hint": "Those globes used as decoration is usually pretty fragile",
+          "breakable": true,
+          "takeable": false,
+          "openable": false,
+          "moveable": false,
+          "break_event": "The globa broke and popped open and a toy car fell out!",
+          "inside": {
+            "type": "item",
+            "name": "Toy car",
+            "usable_in": 4,
+            "desc": "A toy car which can be charge by spinning the wheels backwards",
+            "usable_at": "plastic tunnel"
+          },
+          "final_state": {
+            "name": "Broken globe",
+            "desc": "A globe that's been broken"
+          }
+        },
+        "plastic tunnel": {
+          "name": "Plastic tunnel",
+          "desc": "A shielded plastic tunnel with a button at the end. The button cannot be reached",
+          "hint": "It must be a way to push that button. Maybe hit it with something?",
+          "breakable": false,
+          "takeable": false,
+          "openable": false,
+          "moveable": false,
+          "use_event": "continue",
+          "continue_event": "The button got pressed by the car and opened up a trapdoor in the wall!",
+          "final_state": {
+            "name": "Plastic tunnel",
+            "desc": "The button at the end of the the tunnel has been pressed"
+          }
+        }
+      }
+    },
+    "5": {
+      "number": 5,
+      "info": "The room is very steril with white tiles on the walls and floor. A bright lamp is hanging from the ceiling.",
+      "objects": {
+        "medicine cabinet": {
+          "name": "Medicine cabinet",
+          "desc": "A medicine cabinet in chrome, there's no windows to see whats inside",
+          "hint": "In room one the path forward was through the wardrobe... Can this be it?",
+          "breakable": false,
+          "takeable": false,
+          "openable": false,
+          "moveable": false,
+          "use_event": "continue",
+          "continue_event": "The medicine cabinet opened up! It's possible to squeeze through to the next room!",
+          "final_state": {
+            "name": "Medicine cabinet",
+            "desc": "An unlocked medicine cabinet. There's no medicine inside, it's an opening to the next room"
+          }
+        },
+        "gurney": {
+          "name": "Gurney",
+          "desc": "A standard gurney with paper on top, the wheels seems to be working",
+          "hint": "I guess the wheels on the gurney is there to be used",
+          "breakable": false,
+          "takeable": false,
+          "openable": false,
+          "moveable": true,
+          "move_event": "The stretcher rolled to the side, there's a scalpel on the floor",
+          "inside": {
+            "type": "item",
+            "name": "Scalpel",
+            "desc": "A sharp scalpel that must be able to cut through most things",
+            "usable_in": 5,
+            "usable_at": "plastic brain"
+          },
+          "final_state": {
+            "name": "Gurney",
+            "desc": "A regular gurney rolled to the side of the room. The scalpel was found underneith it"
+          }
+        },
+        "plastic brain": {
+          "name": "Plastic brain",
+          "desc": "A plastic brain used for teaching medicine",
+          "hint": "There must be way to open the brain with a sharp tool",
+          "breakable": false,
+          "takeable": false,
+          "openable": false,
+          "moveable": false,
+          "use_event": "break",
+          "break_event": "The scalpel sliced right through the brain, a key was hidden inside!",
+          "inside": {
+            "type": "item",
+            "name": "Small key",
+            "desc": "A small key that looks to fit a cabinet locker",
+            "usable_in": 5,
+            "usable_at": "medicine cabinet"
+          },
+          "final_state": {
+            "name": "Opened plastic brain",
+            "desc": "A plastic brain used for teaching anatomy sliced in two pieces"
+          }
+        }
+      }
+    },
+    "6": {
+      "number": 6,
+      "info": "What a strange room. The room has four pillars places in a square and in the middle there's a box. A locked door is located at the other side of the room",
+      "objects": {
+        "pillars": {
+          "name": "Pillars",
+          "desc": "Four pillars placed in a square in middle of the room",
+          "hint": "I'm pretty sure thouse pillars is moveable",
+          "breakable": false,
+          "takeable": false,
+          "openable": false,
+          "moveable": true,
+          "move_event": "The pillar moved triggered a chain reaction. A slot in the third pillar opened up and a hammer popped up",
+          "inside": {
+            "type": "item",
+            "name": "Hammer",
+            "desc": "A regular hammer with a large grip, this must give a lot of power",
+            "usable_in": 6,
+            "usable_at": "wooden box"
+          },
+          "final_state": {
+            "name": "Pillars",
+            "desc": "Four pillars, one with an empty slot on top"
+          }
+        },
+        "wooden box": {
+          "name": "Wooden box",
+          "desc": "A small wooden box in the middle of the room. Stuck in the floor",
+          "hint": "With a lot of power, it should be possible to break this box",
+          "breakable": false,
+          "takeable": false,
+          "openable": false,
+          "moveable": false,
+          "use_event": "break",
+          "break_event": "The box smashed right open! A crowbar was stored inside",
+          "inside": {
+            "type": "item",
+            "name": "Crowbar",
+            "desc": "It looks like something that belongs to Gordon Freeman",
+            "usable_in": 6,
+            "usable_at": "door"
+          },
+          "final_state": {
+            "name": "Trashed wooden box",
+            "desc": "A wooden box that someone used a lot of power on"
+          }
+        },
+        "door": {
+          "name": "Door",
+          "desc": "A locked door located at the other side of the room",
+          "hint": "The door doesn't even have a key holse so I guess it's ment to be broken open",
+          "breakable": false,
+          "takeable": false,
+          "openable": false,
+          "moveable": false,
+          "use_event": "continue",
+          "continue_event": "Woah, a lot of muscles there. The door got completely torn down",
+          "final_state": {
+            "name": "Broken door",
+            "desc": "It's almost just the frame left of where a door once sat"
+          }
+        }
+      }
+    },
+    "7": {
+      "number": 7,
+      "info": "The room feels like a castle. A knight's armor is placed in the middle of the room, guarding a large gate",
+      "objects": {
+        "knights helmet": {
+          "name": "Knigh't helmet",
+          "desc": "A knight's helmet, almost two meters up at the top of the armor",
+          "hint": "It must be posible to open the helmet so a person inside could breathe",
+          "breakable": false,
+          "takeable": false,
+          "openable": true,
+          "moveable": false,
+          "open_event": "The face cover on the helmet got moved away, inside the helmnet there's a key with the engraving 'knight's key'",
+          "inside": {
+            "type": "item",
+            "name": "Silver key",
+            "desc": "A key with the engraving 'knight's key'",
+            "usable_in": 4,
+            "usable_at": "chest"
+          },
+          "final_state": {
+            "name": "Knight's helmet",
+            "desc": "A knight's helmet with the cover opened"
+          }
+        },
+        "knights shield": {
+          "name": "Knight's shield",
+          "desc": "A large shield held by the knight. In the middle of the shield there's a small hole",
+          "hint": "I'm pretty sure I saw an object with a knight's shield engraved in an earlier room",
+          "breakable": false,
+          "takeable": false,
+          "openable": false,
+          "moveable": false,
+          "use_event": "open",
+          "open_event": "The stone fits perfectly! The shield got tilted to the side and a key is in the knight's hand",
+          "inside": {
+            "type": "item",
+            "name": "Gate key",
+            "desc": "A large old castle key",
+            "usable_in": 7,
+            "usable_at": "gate"
+          },
+          "final_state": {
+            "name": "Knight's shield",
+            "desc": "The shield of the knight's armor is tilted to the side"
+          }
+        },
+        "gate": {
+          "name": "Gate",
+          "desc": "A large gate, it looks just like in the movies",
+          "hint": "All gates must have a key and someone guarding that key",
+          "breakable": false,
+          "takeable": false,
+          "openable": false,
+          "moveable": false,
+          "use_event": "game_cleared",
+          "final_state": {
+            "name": "Gate",
+            "desc": "The very last obstacle in this maze is OPEN!"
+          }
+        }
+      }
+    }
+  }
+}
